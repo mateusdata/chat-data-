@@ -6,6 +6,7 @@ import Axios from "axios";
 import { Button } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 import audio from "./audio1.mp3";
+import audio2 from "./audio2.mp3";
 
 function App() {
   const [mensage, setMensage] = useState("");
@@ -23,7 +24,7 @@ function App() {
     
   }, [received, mensage]);
 function musica () {
-  new Audio(audio).play(1)
+  new Audio(audio).play()
  
 }
   const deleteTalks = () => {
@@ -31,8 +32,10 @@ function musica () {
     if (received.length) {
       Axios.delete("https://chat-data-api.vercel.app/delete").then(
         (response) => {
+          new Audio(audio2).play()
           setReceived("");
           alert("Conversas apagadas");
+          
         }
       );
     }
@@ -69,14 +72,14 @@ function musica () {
         <h1>ChatData</h1>
       </header>
       
-      <Button
+      {<Button
         onClick={deleteTalks}
         variant="outlined"
-        style={{ color: !!received.length && "red" }}
+        style={{ color: !!received.length && "red", border:"none" }}
         startIcon={<DeleteIcon />}
       >
         Apagar menseger
-      </Button>
+      </Button>}
       <div className="mensagemm">
         <div className={received.length ? "mesagemON" : "mesagemOF"}>
           {received &&
@@ -129,7 +132,7 @@ function musica () {
           <textarea
             
             value={mensage}
-            placeholder="😀 Mensagem"
+            placeholder="😀 Mensagem..."
             onChange={(e) => {
               setMensage(e.target.value);
               if(mensage.length > 200){
