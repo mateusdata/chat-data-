@@ -7,13 +7,30 @@ import { Button } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 import audio from "./audio1.mp3";
 import audio2 from "./audio2.mp3";
-
+import images from "./components/array images/images"
+import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
+import emogins from "./components/array emogins/emogin";
 function App() {
   const [mensage, setMensage] = useState("");
   const [received, setReceived] = useState([]);
+  const[number, setNumber] = useState(0);
+  const[changeColor, setChangeColor]  = useState(false);
+  const[changeemogin, setChangeemogin]  = useState(false);
 
-
+ console.log(images);
+ const changeImage = () => {
+  let numberRandomic = Math.floor(Math.random()  * images.images.length -1)
+  setNumber(numberRandomic)
+  if(changeColor){
+    setChangeColor(false);
+    return;
+  }
+  setChangeColor(true);
+  
+ }
   useEffect(() => {
+    let numberEmogin = Math.floor(Math.random()  * emogins.arrayEmogins.length );
+    setChangeemogin(numberEmogin)
     Axios.get("https://chat-data-api.vercel.app/").then((response) => {
       setReceived(response.data);
      // console.log(response.data);
@@ -44,8 +61,6 @@ function musica () {
     e.preventDefault();
     if (mensage) {
       setMensage("");
-
-      console.log({ talk: mensage });
        const data = new Date();
        let hora =  data.getHours()+ ":" + data.getMinutes();
        console.log({ talk: mensage, hora: hora.length });
@@ -67,9 +82,14 @@ function musica () {
     }
   };
   return (
-    <div className="container">
+    <div className="container" style={{
+      
+      backgroundImage:` url( ${images.images[number]})`
+      }}>
       <header>
         <h1>ChatData</h1>
+        
+       <MenuRoundedIcon onClick={changeImage} />
       </header>
       
       {<Button
@@ -87,7 +107,7 @@ function musica () {
             received.map((item) => (
               <div key={item.id}>
                
-                <p className="message sent">
+                <p className="message sent" style={{ backgroundColor: changeColor && "white"}}>
                   {" "}
                   {item.talk}{" "}
                   <span className="status">
@@ -132,7 +152,7 @@ function musica () {
           <textarea
             
             value={mensage}
-            placeholder="😀 Mensagem..."
+            placeholder={`${emogins.arrayEmogins[changeemogin]} Mensagem...`}
             onChange={(e) => {
               setMensage(e.target.value);
               if(mensage.length > 200){
