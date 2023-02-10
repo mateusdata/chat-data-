@@ -7,52 +7,56 @@ import { Button } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 import audio from "./audio1.mp3";
 import audio2 from "./audio2.mp3";
-import images from "./components/array images/images"
-import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
+import audio3 from "./audio3.mp3";
+import images from "./components/array images/images";
+import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import emogins from "./components/array emogins/emogin";
+
+
 function App() {
   const [mensage, setMensage] = useState("");
   const [received, setReceived] = useState([]);
-  const[number, setNumber] = useState(0);
-  const[changeColor, setChangeColor]  = useState(false);
-  const[changeemogin, setChangeemogin]  = useState(false);
+  const [number, setNumber] = useState(0);
+  const [changeColor, setChangeColor] = useState(false);
+  const [changeemogin, setChangeemogin] = useState(false);
+  const [isTrueMensagem, setIstruMensage] = useState(false);
 
- console.log(images);
- const changeImage = () => {
-  let numberRandomic = Math.floor(Math.random()  * images.images.length -1)
-  setNumber(numberRandomic)
-  if(changeColor){
-    setChangeColor(false);
-    return;
-  }
-  setChangeColor(true);
+ const deleteTask = (id) => {
   
+  Axios.delete(`http://localhost:3001/apagar/${id}`)
  }
+  const changeImage = () => {
+    let numberRandomic = Math.floor(Math.random() * images.images.length - 1);
+    setNumber(numberRandomic);
+    if (changeColor) {
+      setChangeColor(false);
+      return;
+    }
+    setChangeColor(true);
+
+  };
   useEffect(() => {
-    let numberEmogin = Math.floor(Math.random()  * emogins.arrayEmogins.length );
-    setChangeemogin(numberEmogin)
+    let numberEmogin = Math.floor(Math.random() * emogins.arrayEmogins.length);
+    setChangeemogin(numberEmogin);
     Axios.get("https://chat-data-api.vercel.app/").then((response) => {
       setReceived(response.data);
-     // console.log(response.data);
+     
     });
     if (received.length) {
       console.log(!!received.length);
     }
-    
-  }, [received, mensage]);
-function musica () {
-  new Audio(audio).play()
- 
-}
+  }, [received]);
+  function musica() {
+    new Audio(audio).play();
+  }
   const deleteTalks = () => {
     setReceived("");
     if (received.length) {
       Axios.delete("https://chat-data-api.vercel.app/delete").then(
         (response) => {
-          new Audio(audio2).play()
+          new Audio(audio2).play();
           setReceived("");
           alert("Conversas apagadas");
-          
         }
       );
     }
@@ -61,17 +65,18 @@ function musica () {
     e.preventDefault();
     if (mensage) {
       setMensage("");
-       const data = new Date();
-       let hora =  data.getHours()+ ":" + data.getMinutes();
-       console.log({ talk: mensage, hora: hora.length });
-       if(hora[1]===":" && hora.length===4){
-        hora = "0"+data.getHours() +":"+ data.getMinutes();
-       }
-       if(hora[2]===":" ){
-        hora = data.getHours() + ":" +data.getMinutes();
-       }
-       
-       
+
+
+
+      const currentTime = new Date();
+      let hours = currentTime.getHours().toLocaleString('pt-BR', {minimumIntegerDigits: 2, useGrouping:false});
+      let minutes = currentTime.getMinutes().toLocaleString('pt-BR', {minimumIntegerDigits: 2, useGrouping:false});
+      //let seconds = currentTime.getSeconds().toLocaleString('pt-BR', {minimumIntegerDigits: 2, useGrouping:false});
+      const hora = `${hours}:${minutes}`
+      
+     
+      
+
       Axios.put("https://chat-data-api.vercel.app/send", {
         talk: mensage,
         time: hora,
@@ -82,34 +87,48 @@ function musica () {
     }
   };
   return (
-    <div className="container" style={{
-      
-      backgroundImage:` url( ${images.images[number]})`
-      }}>
+    <div
+      className="container"
+      style={{
+        backgroundImage: ` url( ${images.images[number]})`,
+      }}
+    >
       <header>
         <h1>ChatData</h1>
-        
-       <MenuRoundedIcon onClick={changeImage} />
+
+        <MenuRoundedIcon onClick={changeImage} />
       </header>
-      
-      {<Button
-        onClick={deleteTalks}
-        variant="outlined"
-        style={{ color: !!received.length && "red", border:"none" }}
-        startIcon={<DeleteIcon />}
-      >
-        Apagar menseger
-      </Button>}
+
+      {
+        <Button
+          onClick={deleteTalks}
+          variant="outlined"
+          style={{ color: !!received.length && "red", border: "none" }}
+          startIcon={<DeleteIcon />}
+        >
+          Apagar conversa
+        </Button>
+      }
       <div className="mensagemm">
         <div className={received.length ? "mesagemON" : "mesagemOF"}>
           {received &&
             received &&
-            received.map((item) => (
+            received.map((item, index) => (
               <div key={item.id}>
-               
-                <p className="message sent" style={{ backgroundColor: changeColor && "white"}}>
-                  {" "}
-                  {item.talk}{" "}
+                
+                <p
+                  onClick={() =>{
+                   !isTrueMensagem ? setIstruMensage(true) : setIstruMensage(false)
+                   
+                  }}
+                  className="message sent"
+                  style={{ backgroundColor: changeColor && "white" }}
+                >
+                  
+                  
+                  {item.talk}
+                 { isTrueMensagem && <DeleteIcon onClick={()=> {deleteTask(item.id);
+                  new Audio(audio3).play();} } style={{color:"red"}}/> }
                   <span className="status">
                     <CheckIcon
                       style={{
@@ -118,7 +137,7 @@ function musica () {
 
                         fontSize: "1.2rem",
                       }}
-                    />{" "}
+                    />
                     <CheckIcon
                       style={{
                         padding: "0",
@@ -127,10 +146,12 @@ function musica () {
                         fontSize: "1.2rem",
                         marginLeft: "-8px",
                       }}
-                    />{" "}
-                    <span className="hora">{item.time}</span>{" "}
-                   
+                    />
+                    <span className="hora">{item.time}</span>
+                    
+                  
                   </span>
+                 
                 </p>
               </div>
             ))}
@@ -139,7 +160,7 @@ function musica () {
               <p className="fa fa-lock"></p>
               As mensagens não são protegidas com a criptografia, qualquer um
               que entrar pode ver essas mensagens fica esperto. Eu mesmo posso
-              pode ler ou ouvi-las. Status mensege{" "}
+              pode ler ou ouvi-las. Status mensege
               <b style={{ color: !!received ? "red" : false }}>
                 {String(!!received.length)}
               </b>
@@ -150,19 +171,18 @@ function musica () {
       <main>
         <form onSubmit={sendMensage}>
           <textarea
-            
             value={mensage}
             placeholder={`${emogins.arrayEmogins[changeemogin]} Mensagem...`}
             onChange={(e) => {
               setMensage(e.target.value);
-              if(mensage.length > 200){
+              if (mensage.length > 200) {
                 alert("Quantidade de caracteres utrapasada");
-                setMensage("")
+                setMensage("");
               }
             }}
           ></textarea>
 
-          <button  onClick={musica} onSubmit={sendMensage} type="submit">
+          <button onClick={musica} onSubmit={sendMensage} type="submit">
             <SendIcon />
           </button>
         </form>
