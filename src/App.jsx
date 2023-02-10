@@ -23,7 +23,7 @@ function App() {
 
  const deleteTask = (id) => {
   
-  Axios.delete(`http://localhost:3001/apagar/${id}`)
+  Axios.delete(`https://chat-data-api.vercel.app/apagar/${id}`)
  }
   const changeImage = () => {
     let numberRandomic = Math.floor(Math.random() * images.images.length - 1);
@@ -116,7 +116,7 @@ function App() {
             received.map((item, index) => (
               <div key={item.id}>
                 
-                <p
+                <p onLoad={()=> new Audio(audio3).play(true)}
                   onClick={() =>{
                    !isTrueMensagem ? setIstruMensage(true) : setIstruMensage(false)
                    
