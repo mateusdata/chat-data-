@@ -1,6 +1,8 @@
 import React, { useContext, useState } from "react";
 import { Contexto } from "./context/Contexto";
+import { useEffect } from "react";
 import "./styles.css";
+import { useNavigate } from "react-router-dom";
 
 function LoginForm() {
   const [name, setName] = useState("");
@@ -8,6 +10,16 @@ function LoginForm() {
   const [password, setPassword] = useState("");
   const { login } = useContext(Contexto);
   const [erro, setErro] = useState(false);
+  const navigate = useNavigate()
+ 
+ useEffect(() => {
+   
+   const recovereUser = localStorage.getItem("usuario");
+   if(recovereUser){
+    navigate("/")
+   }
+   // eslint-disable-next-line
+ }, []);
   const handleSubmit = (event) => {
     event.preventDefault();
     //console.log({name, phone,password});
@@ -58,3 +70,8 @@ function LoginForm() {
 }
 
 export default LoginForm;
+
+
+
+
+
