@@ -54,12 +54,24 @@ body {
 
   overflow-y: auto;
   height: 67vh;
-  padding: 1rem;
-  width: 88%;
+  padding: 0.6rem;
+  width: 100%;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   flex-direction: column;
   overflow-wrap: break-word;
+ 
+}
+.englobaP{
+ 
+  width: 100%;
+  display: flex; 
+  padding: 0rem 0.5rem;
+  margin: 0;
+  overflow-wrap: break-word ;
+  
+  
+  
 }
 
 .mesagemOF {
@@ -174,8 +186,9 @@ button[type="submit"]:hover {
 .sent {
   /*float: right*/
   background-color: #D9FDD3;
-
+  font-weight: 300;
 }
+
 
 #whatsapp-message {
   font-family: sans-serif;

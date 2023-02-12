@@ -1,5 +1,5 @@
 import SendIcon from "@mui/icons-material/Send";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Axios from "axios";
 import { Button } from "@mui/material";
@@ -11,6 +11,7 @@ import images from "../../components/array images/images";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import emogins from "../../components/array emogins/emogin";
 import Header from "../../components/header/header";
+import { Contexto } from "../../test/page test/context/Contexto";
 
 function Talks() {
   const [mensage, setMensage] = useState("");
@@ -19,16 +20,19 @@ function Talks() {
   const [changeColor, setChangeColor] = useState(false);
   const [changeemogin, setChangeemogin] = useState(false);
   const [isTrueMensagem, setIstruMensage] = useState(false);
-
+  const { user, setUser } = useContext(Contexto);
   useEffect(() => {
+    const recovereUser = localStorage.getItem("usuario");
+
+    setUser(JSON.parse(recovereUser));
     let numberEmogin = Math.floor(Math.random() * emogins.arrayEmogins.length);
     setChangeemogin(numberEmogin);
+    
     Axios.get("https://chat-data-api.vercel.app/").then((response) => {
       setArrayTalks(response.data);
     });
-    if (arrayTalks.length) {
-      console.log(!!arrayTalks.length);
-    }
+    
+    // eslint-disable-next-line
   }, [arrayTalks]);
 
   const deleteTalks = (id) => {
@@ -81,7 +85,9 @@ function Talks() {
       Axios.put("https://chat-data-api.vercel.app/send", {
         talk: mensage,
         time: hora,
-      }).then((response) => console.log());
+        phoneUser: user.tel,
+        currentUser: user.nome,
+      })
     }
     if (arrayTalks.length === 0) {
       return <p>Carregando...</p>;
@@ -118,7 +124,14 @@ function Talks() {
             {arrayTalks &&
               arrayTalks &&
               arrayTalks.map((item, index) => (
-                <div key={item.id}>
+                <div
+                  key={item.id}
+                  className="englobaP"
+                  style={{
+                    display: "flex",
+                    justifyContent: item.phoneUser === user.tel && "flex-end",
+                  }}
+                >
                   <p
                     onClick={() => {
                       !isTrueMensagem
@@ -126,8 +139,23 @@ function Talks() {
                         : setIstruMensage(false);
                     }}
                     className="message sent"
-                    style={{ backgroundColor: changeColor && "white" }}
+                    style={{
+                      backgroundColor: item.phoneUser === user.tel && "white",
+                    }}
                   >
+                    <b
+                      style={{
+                        color: !(user.nome === item.currentUser)
+                          ? "orange"
+                          : "blue",
+                      }}
+                    >
+                      {" "}
+                      {!(user.nome === item.currentUser)
+                        ? item.currentUser
+                        : "Eu"}{" "}
+                    </b>{" "}
+                    <br />
                     {item.talk}
                     {isTrueMensagem && (
                       <DeleteIcon
@@ -181,8 +209,10 @@ function Talks() {
               placeholder={`${emogins.arrayEmogins[changeemogin]} Mensagem...`}
               onChange={(e) => {
                 setMensage(e.target.value);
-                if (mensage.length > 200) {
-                  alert("Quantidade de caracteres utrapasada");
+                if (mensage.length > 44) {
+                  alert(
+                    "Quantidade de caracteres utrapasada, apenas 44 permitido"
+                  );
                   setMensage("");
                 }
               }}

@@ -118,7 +118,7 @@ function Test() {
         }
         <div className="mensagemm">
           <div className={arrayTalks.length ? "mesagemON" : "mesagemOF"}>
-            {arrayTalks &&
+            {
               arrayTalks &&
               arrayTalks.map((item, index) => (
                 <div key={item.id}>
