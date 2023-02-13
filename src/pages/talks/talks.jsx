@@ -8,10 +8,10 @@ import audio from "../../components/audio/audio1.mp3";
 import audio2 from "../../components/audio/audio2.mp3";
 import audio3 from "../../components/audio/audio3.mp3";
 import images from "../../components/array images/images";
-import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import emogins from "../../components/array emogins/emogin";
 import Header from "../../components/header/header";
 import { Contexto } from "../../test/page test/context/Contexto";
+import AccountMenu from "../../components/barra lateral/barraLateral";
 
 function Talks() {
   const [mensage, setMensage] = useState("");
@@ -106,7 +106,7 @@ function Talks() {
         <header>
           <h1>ChatData</h1>
 
-          <MenuRoundedIcon onClick={changeImage} />
+          <AccountMenu changeImage={changeImage} user={user.nome}/>
         </header>
 
         {
@@ -119,6 +119,7 @@ function Talks() {
             Apagar conversa
           </Button>
         }
+        {/*<CardUser/>*/}
         <div className="mensagemm">
           <div className={arrayTalks.length ? "mesagemON" : "mesagemOF"}>
             {arrayTalks &&
@@ -143,11 +144,18 @@ function Talks() {
                       backgroundColor: item.phoneUser === user.tel && "white",
                     }}
                   >
-                    <b onClick={()=> alert("Usuario: " + item.currentUser 
-                    +"\nTelefone: "+ item.phoneUser )}
+                    <b
+                      onClick={() =>
+                        alert(
+                          "Usuario: " +
+                            item.currentUser +
+                            "\nTelefone: " +
+                            item.phoneUser
+                        )
+                      }
                       style={{
                         color: !(user.nome === item.currentUser)
-                          ? "orange"
+                          ? `#ff0${item.phoneUser[8]}${item.phoneUser[9]}${item.phoneUser[10]}`
                           : "blue",
                       }}
                     >
