@@ -27,11 +27,11 @@ function Talks() {
     setUser(JSON.parse(recovereUser));
     let numberEmogin = Math.floor(Math.random() * emogins.arrayEmogins.length);
     setChangeemogin(numberEmogin);
-    
+
     Axios.get("https://chat-data-api.vercel.app/").then((response) => {
       setArrayTalks(response.data);
     });
-    
+
     // eslint-disable-next-line
   }, [arrayTalks]);
 
@@ -87,7 +87,7 @@ function Talks() {
         time: hora,
         phoneUser: user.tel,
         currentUser: user.nome,
-      })
+      });
     }
     if (arrayTalks.length === 0) {
       return <p>Carregando...</p>;
@@ -190,14 +190,18 @@ function Talks() {
                 </div>
               ))}
             {arrayTalks.length === 0 && (
-              <div id="whatsapp-message">
+              <div
+                id="whatsapp-message"
+                style={{
+                  display: "flex",
+                  gap: "0.2rem",
+                  borderRadius: "0.5rem",
+                }}
+              >
                 <p className="fa fa-lock"></p>
                 As mensagens não são protegidas com a criptografia, qualquer um
                 que entrar pode ver essas mensagens fica esperto. Eu mesmo posso
-                pode ler ou ouvi-las. Status mensege
-                <b style={{ color: !!arrayTalks ? "red" : false }}>
-                  {String(!!arrayTalks.length)}
-                </b>
+                pode ler ou ouvi-las.
               </div>
             )}
           </div>
@@ -209,12 +213,6 @@ function Talks() {
               placeholder={`${emogins.arrayEmogins[changeemogin]} Mensagem...`}
               onChange={(e) => {
                 setMensage(e.target.value);
-                if (mensage.length > 44) {
-                  alert(
-                    "Quantidade de caracteres utrapasada, apenas 44 permitido"
-                  );
-                  setMensage("");
-                }
               }}
             ></textarea>
 
