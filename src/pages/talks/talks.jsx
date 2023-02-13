@@ -143,7 +143,8 @@ function Talks() {
                       backgroundColor: item.phoneUser === user.tel && "white",
                     }}
                   >
-                    <b
+                    <b onClick={()=> alert("Usuario: " + item.currentUser 
+                    +"\nTelefone: "+ item.phoneUser )}
                       style={{
                         color: !(user.nome === item.currentUser)
                           ? "orange"
