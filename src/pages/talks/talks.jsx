@@ -10,8 +10,10 @@ import audio3 from "../../components/audio/audio3.mp3";
 import images from "../../components/array images/images";
 import emogins from "../../components/array emogins/emogin";
 import Header from "../../components/header/header";
-import { Contexto } from "../../test/page test/context/Contexto";
+
 import AccountMenu from "../../components/barra lateral/barraLateral";
+import { Contexto } from "../../context/Contexto";
+
 
 function Talks() {
   const [mensage, setMensage] = useState("");
@@ -81,11 +83,11 @@ function Talks() {
       });
       //let seconds = currentTime.getSeconds().toLocaleString('pt-BR', {minimumIntegerDigits: 2, useGrouping:false});
       const hora = `${hours}:${minutes}`;
-
+      
       Axios.put("https://chat-data-api.vercel.app/send", {
         talk: mensage,
         time: hora,
-        phoneUser: user.tel,
+        phoneUser: user.email,
         currentUser: user.nome,
       });
     }
@@ -106,7 +108,7 @@ function Talks() {
         <header>
           <h1>ChatData</h1>
 
-          <AccountMenu changeImage={changeImage} user={user.nome}/>
+          <AccountMenu  picture={user.picture}changeImage={changeImage} user={user.nome} />
         </header>
 
         {
@@ -130,7 +132,7 @@ function Talks() {
                   className="englobaP"
                   style={{
                     display: "flex",
-                    justifyContent: item.phoneUser === user.tel && "flex-end",
+                    justifyContent: item.phoneUser === user.email && "flex-end",
                   }}
                 >
                   <p
@@ -141,7 +143,7 @@ function Talks() {
                     }}
                     className="message sent"
                     style={{
-                      backgroundColor: item.phoneUser === user.tel && "white",
+                      backgroundColor: item.phoneUser === user.email && "white",
                     }}
                   >
                     <b
@@ -149,13 +151,13 @@ function Talks() {
                         alert(
                           "Usuario: " +
                             item.currentUser +
-                            "\nTelefone: " +
+                            "\nemail: " +
                             item.phoneUser
                         )
                       }
                       style={{
                         color: !(user.nome === item.currentUser)
-                          ? `#ff0${item.phoneUser[8]}${item.phoneUser[9]}${item.phoneUser[10]}`
+                          ? user.colorUser
                           : "blue",
                       }}
                     >
@@ -194,6 +196,7 @@ function Talks() {
                         }}
                       />
                       <span className="hora">{item.time}</span>
+                      
                     </span>
                   </p>
                 </div>

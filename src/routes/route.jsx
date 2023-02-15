@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import {BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { AuthProvider, Contexto } from "../context/Contexto";
+import LoginForm from "../pages/login/login";
 import Talks from "../pages/talks/talks";
-import { AuthProvider, Contexto } from "../test/page test/context/Contexto";
-import LoginForm from "../test/page test/login";
-import Test from "../test/test";
+import Text from "../test/text";
+
 const Rotas = () => {
     function Private({ children }) {
         const {autenticado, load}  = useContext(Contexto);
@@ -12,7 +13,7 @@ const Rotas = () => {
         return <div style={{color:"blue"}} className="loading">Carregando...</div>
       }
        if(!autenticado){
-        return <Navigate to={"/teste/login" || "/teste"}/>
+        return <Navigate to={"/login" || "/test"}/>
        }
         return children
       }
@@ -21,8 +22,9 @@ const Rotas = () => {
     <AuthProvider>
       <Routes>
         <Route exact path="/" element={<Private><Talks/></Private>}/>
-        <Route exact path="/teste" element={<Test/>}/>
-        <Route exact path="/teste/login" element={<LoginForm/>}/>
+        <Route exact path="/login" element={<LoginForm/>}/>
+        <Route exact path="/test" element={<Text/>}/>
+       
       </Routes>
       </AuthProvider>
     </BrowserRouter>
