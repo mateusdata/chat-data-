@@ -51,7 +51,6 @@ export const AuthProvider = ({ children }) => {
       setUser(nome);
       setEmailAddress(email);
       navigate("/");
-      alert(`Parabens! ${nome} agora voce entrará no Chatdata`);
     }
   };
   const logout = () => {

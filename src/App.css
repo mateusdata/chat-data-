@@ -103,8 +103,8 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  gap: 12rem;
-  background-color: rgb(8, 126, 71);
+  gap: 9rem;
+  background-color:#075E54;
   color: white;
   padding: 1rem;
   border-top-left-radius: 15px;
@@ -240,6 +240,11 @@ span {
 }
 
 
+@media (max-width: 338px) {
+  header {
+    gap: 6rem
+  }
+}
 
 @media only screen and (max-width: 600px) {
   body {

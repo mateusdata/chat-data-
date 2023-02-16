@@ -3,17 +3,23 @@ import { useEffect } from "react";
 import "./styles.css";
 import { useNavigate } from "react-router-dom";
 import { Contexto } from "../../context/Contexto";
+import PuffLoader from "react-spinners/PuffLoader";
 
 import { useGoogleLogin } from "@react-oauth/google";
 
 import Axios from "axios";
 function LoginForm() {
   const [loginUser, setLoginUser] = useState("");
+  const [load, setLoad] = useState(true);
 
   const { login } = useContext(Contexto);
 
   const navigate = useNavigate();
-
+  useEffect(() => {
+    setTimeout(() => {
+      setLoad(false);
+    }, 1300);
+  }, []);
   useEffect(() => {
     const recovereUser = localStorage.getItem("usuario");
     if (recovereUser) {
@@ -42,7 +48,13 @@ function LoginForm() {
       });
     },
   });
-
+  if (load) {
+    return (
+      <div className="load">
+        <PuffLoader size={150} color="#0d9ba5" />
+      </div>
+    );
+  }
   return (
     <div className="login-container">
       <div className="login">
@@ -60,8 +72,7 @@ function LoginForm() {
             <span className="button-text">Fazer login com o google</span>
           </button>
         </div>
-        <h3 style={{color:"#0b209b"}}>Chat de conversa divertidas</h3>
-
+        <h3 style={{ color: "#0b209b" }}>Chat de conversa divertidas</h3>
       </div>
     </div>
   );

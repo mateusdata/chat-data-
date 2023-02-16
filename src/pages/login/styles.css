@@ -14,6 +14,15 @@
     flex-direction: column;
     gap: 4rem;
 }
+.load{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+
+}
+
 .login{
   box-shadow: 2px 1px 4px 2px rgb(71, 177, 204);
   width: 50%;

@@ -34,7 +34,9 @@ export default function AccountMenu(props) {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
           >
-            <Avatar sx={{ width: 32, height: 32,  backgroundColor:"#FF830B"}}>{props.user && props.user[0] }</Avatar>
+            <Avatar sx={{ width: 56, height: 56,  backgroundColor:"#FF830B"}}> 
+            <img src={props.picture} alt="" />
+            </Avatar>
           </IconButton>
         </Tooltip>
       </Box>

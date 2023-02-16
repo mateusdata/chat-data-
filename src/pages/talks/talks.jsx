@@ -4,7 +4,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import Axios from "axios";
 import { Button } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
-import audio from "../../components/audio/audio1.mp3";
+//import audio from "../../components/audio/audio1.mp3";
 import audio2 from "../../components/audio/audio2.mp3";
 import audio3 from "../../components/audio/audio3.mp3";
 import images from "../../components/array images/images";
@@ -23,6 +23,9 @@ function Talks() {
   const [changeemogin, setChangeemogin] = useState(false);
   const [isTrueMensagem, setIstruMensage] = useState(false);
   const { user, setUser } = useContext(Contexto);
+  const [mutado, setMutado] = useState(true)
+
+  
   useEffect(() => {
     const recovereUser = localStorage.getItem("usuario");
 
@@ -50,10 +53,10 @@ function Talks() {
     }
     setChangeColor(true);
   };
-
-  function playSound() {
-    new Audio(audio).play();
-  }
+  const silenciar = ()=>{
+    setMutado(false);
+    alert(mutado)
+   } 
 
   const deleteAllTalks = () => {
     setArrayTalks("");
@@ -67,7 +70,7 @@ function Talks() {
       );
     }
   };
-
+ 
   const sendMensage = (e) => {
     e.preventDefault();
     if (mensage) {
@@ -108,7 +111,7 @@ function Talks() {
         <header>
           <h1>ChatData</h1>
 
-          <AccountMenu  picture={user.picture}changeImage={changeImage} user={user.nome} />
+          <AccountMenu  silenciar={silenciar} picture={user.picture}changeImage={changeImage} user={user.nome} />
         </header>
 
         {
@@ -228,7 +231,7 @@ function Talks() {
               }}
             ></textarea>
 
-            <button onClick={playSound} onSubmit={sendMensage} type="submit">
+            <button onSubmit={sendMensage} type="submit">
               <SendIcon />
             </button>
           </form>
