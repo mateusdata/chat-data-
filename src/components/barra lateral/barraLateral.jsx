@@ -34,7 +34,7 @@ export default function AccountMenu(props) {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
           >
-            <Avatar sx={{ width: 56, height: 56,  backgroundColor:"#FF830B"}}> 
+            <Avatar sx={{ width: 36, height: 36,  backgroundColor:"#FF830B"}}> 
             <img src={props.picture} alt="" />
             </Avatar>
           </IconButton>
