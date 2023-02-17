@@ -4,15 +4,26 @@ import "./styles.css";
 import { useNavigate } from "react-router-dom";
 import { Contexto } from "../../context/Contexto";
 import PuffLoader from "react-spinners/PuffLoader";
-
+import FacebookLogin from "@greatsumini/react-facebook-login";
 import { useGoogleLogin } from "@react-oauth/google";
 
 import Axios from "axios";
 function LoginForm() {
   const [loginUser, setLoginUser] = useState("");
   const [load, setLoad] = useState(true);
+  const [facebook, setFacebook] = useState();
 
   const { login } = useContext(Contexto);
+  useEffect(() => {
+    if(facebook){
+      const{url} = facebook.picture.data
+     
+      console.log("Facebook data updated:", facebook);
+      console.log(url)
+    }
+    handleSubmit();
+    // eslint-disable-next-line
+  }, [facebook]);
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -20,6 +31,8 @@ function LoginForm() {
       setLoad(false);
     }, 1300);
   }, []);
+
+
   useEffect(() => {
     const recovereUser = localStorage.getItem("usuario");
     if (recovereUser) {
@@ -30,11 +43,16 @@ function LoginForm() {
   }, [loginUser]);
 
   const handleSubmit = () => {
-    const { email } = loginUser;
-    const { given_name } = loginUser;
-    const { picture } = loginUser;
-
-    login(email, given_name, picture);
+    if(loginUser){
+      login(loginUser.email, loginUser.given_name, loginUser.picture);
+      return;
+    }
+   else if(facebook){
+    login(facebook.email, facebook.name, facebook.picture.data.url); 
+   
+    return;
+   }  
+  
   };
 
   const loginGoogle = useGoogleLogin({
@@ -61,6 +79,7 @@ function LoginForm() {
         <h1>Inscreva-se no Chatdata</h1>
 
         <div>
+          
           <button className="google-button" onClick={loginGoogle}>
             <span className="google-icon-wrapper">
               <img
@@ -70,10 +89,53 @@ function LoginForm() {
               />
             </span>
             <span className="button-text">Fazer login com o google</span>
-          </button>
+          </button> <br />
+        
+          <FacebookLogin
+          children="Login com o facenook"
+          onClick={handleSubmit}
+            style={{
+              backgroundColor: "#4267b2",
+              boxShadow: "rgba(0, 0, 0, 0.3) 0px 1px 1px 1px",  
+              fontSize: "16px",
+              borderRadius: "4px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              border: "none",
+              bordeRadius: "2px",
+              height: "48px",
+              width: "250px",
+              padding: "0px 16px",
+              color: "white",
+              fontFamily: "Roboto, sans-serif",
+              fontWeight: 500,
+              cursor: "pointer",
+            }}
+            appId="1575153226338645"
+            onProfileSuccess={(response) => {
+              console.log("Get Profile Success!", response);
+              setFacebook(response);
+             
+            }}
+          >  <img
+          className="google-icon"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Facebook_f_logo_%282019%29.svg/600px-Facebook_f_logo_%282019%29.svg.png"
+          alt="Google logo"
+        />
+          <p>Login com o facenook</p>
+          </FacebookLogin>
         </div>
-        <h3 style={{ color: "#0b209b" }}>Chat de conversa divertidas</h3>
+
+        <h3 className="h3" style={{ color: "#0b209b" }}>ChatData Messenger</h3>
       </div>
+
+      {/**<figure>
+        <img src={facebook.picture.data.url} alt="" />
+        <p>{facebook ? facebook.name:false}</p>
+        <p>{facebook ? facebook.email:false}</p>
+        <p>{facebook ? facebook.name:false}</p>
+      </figure> */}
     </div>
   );
 }

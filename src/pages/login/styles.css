@@ -42,6 +42,7 @@
     border-radius: 2px;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 1px 1px;
     height: 48px;
+    width: 250px;
     padding: 0px 16px;
     background-color: #4285f4;
     color: white;
@@ -68,14 +69,40 @@
     height: 24px;
     margin: 12px;
   }
+  .facebook{
+    width: 24px;
+    height: 24px;
+    margin: 12px;
+  }
+  .h3{
+    color: #0b209b;
+  }
   
 @media (max-width: 767px) {
     .form {
       width: 120%;
       padding: 30px;
+      
+    }
+    .h3{
+      display: none;
     }
     .login{
       width: 117%;
+      padding: 30px;
+    }
+  }
+  @media (max-width: 336px) {
+    .form {
+      width: 100vw;
+      padding: 30px;
+      
+    }
+    .h3{
+      display: none;
+    }
+    .login{
+      width: 95vw;
       padding: 30px;
     }
   }
