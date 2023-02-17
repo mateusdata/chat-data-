@@ -232,6 +232,12 @@ span {
   color: rgb(51, 50, 50);
   font-size: 0.9rem;
 }
+.imageUser{
+  border-radius: 52px;
+  height: 2rem;
+  width: 2rem;
+
+}
 
 @media (max-width: 767px) {
   #whatsapp-message {

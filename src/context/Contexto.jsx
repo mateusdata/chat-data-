@@ -54,10 +54,10 @@ export const AuthProvider = ({ children }) => {
     }
   };
   const logout = () => {
-   
+    navigate("/login");
     setUser(null);
     localStorage.removeItem("usuario");
-    navigate("/login");
+    
   };
 
   return (

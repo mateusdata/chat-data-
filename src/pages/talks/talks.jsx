@@ -28,7 +28,10 @@ function Talks() {
   
   useEffect(() => {
     const recovereUser = localStorage.getItem("usuario");
-
+    if (!("Notification" in window)) {
+      console.warn("Notifications not supported in this browser");
+      return;
+    }
     setUser(JSON.parse(recovereUser));
     let numberEmogin = Math.floor(Math.random() * emogins.arrayEmogins.length);
     setChangeemogin(numberEmogin);
@@ -164,11 +167,12 @@ function Talks() {
                           : "blue",
                       }}
                     >
-                      {" "}
+                      
                       {!(user.nome === item.currentUser)
                         ? item.currentUser
-                        : "Eu"}{" "}
-                    </b>{" "}
+                        : "Eu"}
+                    </b>
+                   
                     <br />
                     {item.talk}
                     {isTrueMensagem && (
