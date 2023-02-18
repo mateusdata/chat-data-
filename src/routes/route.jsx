@@ -6,7 +6,8 @@ import Talks from "../pages/talks/talks";
 import Text from "../test/text";
 
 const Rotas = () => {
-    function Private({ children }) {
+   
+  function Private({ children }) {
         const {autenticado, load}  = useContext(Contexto);
     
       if (load) {

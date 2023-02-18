@@ -2,7 +2,15 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
+  overflow-wrap: break-word ;
+  
+}
+#root{
+  position: relative;
+  
+  max-width: 100vw;
+  max-height: 100vh;
+  overflow: hidden;
 }
 ::-webkit-scrollbar {
   width: 5px;
@@ -111,6 +119,7 @@ header {
   border-top-right-radius: 15px;
   text-align: justify;
   width: 100%;
+  
 
 }
 

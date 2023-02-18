@@ -218,9 +218,7 @@ function Talks() {
                 }}
               >
                 <p className="fa fa-lock"></p>
-                As mensagens não são protegidas com a criptografia, qualquer um
-                que entrar pode ver essas mensagens fica esperto. Eu mesmo posso
-                pode ler ou ouvi-las.
+                 Olá {user.nome} Seja bem-vindo ao Chata data converse com seus amigos nesse chat group
               </div>
             )}
           </div>
