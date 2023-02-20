@@ -90,7 +90,7 @@ function Talks() {
       //let seconds = currentTime.getSeconds().toLocaleString('pt-BR', {minimumIntegerDigits: 2, useGrouping:false});
       const hora = `${hours}:${minutes}`;
       
-      Axios.put("https://chat-data-api.vercel.app/send", {
+      Axios.post("https://chat-data-api.vercel.app/send", {
         talk: mensage,
         time: hora,
         phoneUser: user.email,
