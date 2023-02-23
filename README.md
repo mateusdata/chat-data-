@@ -1,74 +1,24 @@
-# Getting Started with Create React App
+# Bem-vindo ao repositorio do Chatdata
 
 
 https://user-images.githubusercontent.com/54743403/221028263-22d8dc90-be67-44d9-b320-01e308be6acb.mp4
 
+# 📢 Conheça o Chat-data! 📱💬
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 🔗 Acesse agora: https://chat-data.vercel.app/ 🔗
 
-## Available Scripts
+🚀 Com o Chat-data, você pode enviar mensagens em grupo e também tem a opção de apagar todas as mensagens ou selecionar individualmente as que deseja excluir. Além disso, a aplicação permite que você visualize seus dados pessoais ao clicar em seu nome, altere o tema de acordo com sua preferência e faça login facilmente com sua conta do Google ou Facebook.
 
-In the project directory, you can run:
+👥 Converse com seus amigos, familiares ou colegas de trabalho de forma prática com o Chat-data.
 
-### `npm start`
+# 📱💬💻 #ChatData, a melhor solução para suas conversas em grupo!
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# Print da versão mobile!!  
+[Screenshot_2023-02-23-17-31-49-385_com android chrome](https://user-images.githubusercontent.com/54743403/221029787-2d072ffd-56f4-4c68-b236-3714c3dd2658.jpg)
+[Screenshot_2023-02-23-18-02-42-708_com android chrome](https://user-images.githubusercontent.com/54743403/221029771-7ae022f3-2b53-4977-b565-846be8df31aa.jpg)
+![Screenshot_2023-02-23-17-59-45-299_com android chrome](https://user-images.githubusercontent.com/54743403/221029776-6bcb3ad5-9d10-4ade-8588-9fd46151da78.jpg)
+![Screenshot_2023-02-23-18-02-31-894_com android chrome](https://user-images.githubusercontent.com/54743403/221029780-266ac97d-8eb3-48e1-aeac-8de8b14efdb4.jpg)
+![Screenshot_2023-02-23-17-32-42-437_com android chrome](https://user-images.githubusercontent.com/54743403/221029781-4de00cd8-eaca-46bf-98a6-abeb5d961d33.jpg)
+![Screenshot_2023-02-23-18-02-50-565_com android chrome](https://user-images.githubusercontent.com/54743403/221029783-5dfd17ca-0d48-4845-8a07-e9074f61e8ff.jpg)
+![Screenshot_2023-02-23-17-31-42-421_com android chrome](https://user-images.githubusercontent.com/54743403/221029785-78e190c8-0b3c-4565-818d-593badedc018.jpg)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
