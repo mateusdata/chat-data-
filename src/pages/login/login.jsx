@@ -130,7 +130,7 @@ function LoginForm() {
           </div>
 
           <h3 className="h3" style={{ color: "#0b209b" }}>
-            ChatData Messenger
+           
           </h3>
         </div>
 
