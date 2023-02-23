@@ -218,7 +218,7 @@ function Talks() {
                 }}
               >
                 <p className="fa fa-lock"></p>
-                 Olá {user.nome} Seja bem-vindo ao Chata data converse com seus amigos nesse chat group
+                 Olá {user.nome} Seja bem-vindo ao Chat data, converse com seus amigos nesse chat-group.
               </div>
             )}
           </div>
